@@ -165,7 +165,7 @@ button { font-family: inherit; cursor: pointer; }
 .header-actions .btn { display: none; }
 
 .menu-toggle {
-  background: none;
+  background: #16161e;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
   width: 44px; height: 44px;
@@ -185,7 +185,7 @@ button { font-family: inherit; cursor: pointer; }
 
 .mobile-nav {
   position: fixed; inset: 68px 0 0 0;
-  background: var(--color-bg);
+  background: #0b0b10;
   z-index: 49;
   padding: 24px 18px;
   transform: translateY(-12px);
