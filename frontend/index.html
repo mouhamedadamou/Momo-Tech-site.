@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Momo Tech — Recharge Diamants & Abonnements Free Fire</title>
+<meta name="description" content="Rechargez vos diamants Free Fire, abonnements, Booyah Pass et niveaux rapidement et en toute sécurité avec Momo Tech.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="#accueil" class="logo">
+      <span class="logo-mark">MT</span>
+      Momo Tech
+    </a>
+
+    <nav class="nav-links">
+      <a href="#accueil">Accueil</a>
+      <a href="#produits" onclick="selectCategory('diamonds')">Diamants</a>
+      <a href="#produits" onclick="selectCategory('subscriptions')">Abonnements</a>
+      <a href="#produits" onclick="selectCategory('other')">Booyah Pass</a>
+      <a href="#produits" onclick="selectCategory('other')">Monter de niveau</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="header-actions">
+      <a href="#produits" class="btn btn-primary">Voir les produits</a>
+      <button class="menu-toggle" aria-label="Menu" aria-expanded="false">
+        <span></span>
+      </button>
+    </div>
+  </div>
+
+  <nav class="mobile-nav">
+    <a href="#accueil">Accueil</a>
+    <a href="#produits" onclick="selectCategory('diamonds')">Diamants</a>
+    <a href="#produits" onclick="selectCategory('subscriptions')">Abonnements</a>
+    <a href="#produits" onclick="selectCategory('other')">Booyah Pass</a>
+    <a href="#produits" onclick="selectCategory('other')">Monter de niveau</a>
+    <a href="#contact">Contact</a>
+    <a href="#produits" class="btn btn-primary btn-block">Voir les produits</a>
+  </nav>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero" id="accueil">
+    <div class="container hero-inner">
+      <span class="hero-badge"><span class="dot"></span> Paiement sécurisé MTN · Moov · Celtiis</span>
+      <h1>Momo <span class="text-accent">Tech</span></h1>
+      <p class="lead">Rechargez vos diamants Free Fire rapidement et simplement.</p>
+      <div class="hero-cta">
+        <a href="#produits" class="btn btn-primary">Recharger maintenant</a>
+        <a href="#comment-ca-marche" class="btn btn-outline">Comment ça marche</a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="hero-stat"><b>100%</b><span>Livraison garantie</span></div>
+        <div class="hero-stat"><b>&lt; 5 min</b><span>Recharge rapide</span></div>
+        <div class="hero-stat"><b>24/7</b><span>Support WhatsApp</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUITS -->
+  <section class="section" id="produits">
+    <div class="container">
+      <h2 class="section-title reveal">Nos produits</h2>
+      <p class="section-subtitle reveal">Choisis ton pack de diamants, ton abonnement ou ton pass — le paiement se fait en toute sécurité juste après.</p>
+
+      <div class="category-tabs" id="category-tabs"></div>
+      <div class="product-grid" id="product-grid">
+        <p style="color:var(--color-muted)">Chargement des produits...</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMMENT ÇA MARCHE -->
+  <section class="section" id="comment-ca-marche">
+    <div class="container">
+      <h2 class="section-title reveal">Comment ça marche</h2>
+      <p class="section-subtitle reveal">Trois étapes, moins de 5 minutes.</p>
+
+      <div class="steps-grid">
+        <div class="step-card reveal">
+          <div class="step-number">1</div>
+          <h3>Choisis ton produit</h3>
+          <p style="color:var(--color-muted)">Sélectionne tes diamants, ton abonnement ou ton pass, puis renseigne ton ID joueur Free Fire.</p>
+        </div>
+        <div class="step-card reveal">
+          <div class="step-number">2</div>
+          <h3>Paie en toute sécurité</h3>
+          <p style="color:var(--color-muted)">Tu es redirigé vers PayDunya : MTN Mobile Money, Moov Money ou Celtiis.</p>
+        </div>
+        <div class="step-card reveal">
+          <div class="step-number">3</div>
+          <h3>Reçois ta commande</h3>
+          <p style="color:var(--color-muted)">Dès le paiement confirmé, ta commande est enregistrée et traitée rapidement.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section" id="contact">
+    <div class="container">
+      <h2 class="section-title reveal">Contact</h2>
+      <p class="section-subtitle reveal">Une question sur ta commande ? On te répond vite.</p>
+
+      <div class="contact-card reveal">
+        <a class="contact-row" href="https://wa.me/22997650741" target="_blank" rel="noopener">
+          <span class="icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm5.6 14.3c-.2.6-1.3 1.2-1.9 1.3-.5.1-1.1.2-3.5-.7-2.9-1.1-4.8-4-5-4.2-.1-.2-1.2-1.6-1.2-3s.7-2.1 1-2.4c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5.2.6.8 1.9.8 2 .1.2.1.3 0 .5-.1.2-.2.3-.3.5-.2.2-.3.3-.5.5-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.7-.1.2-.2.7-.8.9-1.1.2-.3.4-.2.6-.1.2.1 1.5.7 1.8.8.3.1.5.2.6.3.1.2.1.9-.1 1.5Z"/></svg>
+          </span>
+          <div>
+            <strong>WhatsApp</strong>
+            <div style="color:var(--color-muted)">+229 0197650741</div>
+          </div>
+        </a>
+        <a class="contact-row" href="mailto:mouhamedamzat14@gmail.com">
+          <span class="icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m3 6 9 7 9-7"/></svg>
+          </span>
+          <div>
+            <strong>E-mail</strong>
+            <div style="color:var(--color-muted)">mouhamedamzat14@gmail.com</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="logo" style="margin-bottom:10px;"><span class="logo-mark">MT</span> Momo Tech</div>
+        <p style="max-width:320px;">Recharge de diamants et produits Free Fire pour joueurs au Bénin — rapide, sécurisé, sans détour.</p>
+      </div>
+      <div>
+        <h4>Liens</h4>
+        <a href="#accueil">Accueil</a>
+        <a href="#produits">Produits</a>
+        <a href="order-lookup.html">Commande</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div>
+        <h4>Légal &amp; contact</h4>
+        <a href="terms.html">Conditions d'utilisation</a>
+        <a href="privacy.html">Politique de confidentialité</a>
+        <a href="https://wa.me/22997650741" target="_blank" rel="noopener">+229 0197650741</a>
+        <a href="mailto:mouhamedamzat14@gmail.com">mouhamedamzat14@gmail.com</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> Momo Tech. Tous droits réservés.</span>
+      <span>Fait avec ⚡ pour la communauté Free Fire</span>
+    </div>
+  </div>
+</footer>
+
+<a class="whatsapp-float" href="https://wa.me/22997650741" target="_blank" rel="noopener" aria-label="Contacter sur WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="#05070d"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm5.6 14.3c-.2.6-1.3 1.2-1.9 1.3-.5.1-1.1.2-3.5-.7-2.9-1.1-4.8-4-5-4.2-.1-.2-1.2-1.6-1.2-3s.7-2.1 1-2.4c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5.2.6.8 1.9.8 2 .1.2.1.3 0 .5-.1.2-.2.3-.3.5-.2.2-.3.3-.5.5-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.7-.1.2-.2.7-.8.9-1.1.2-.3.4-.2.6-.1.2.1 1.5.7 1.8.8.3.1.5.2.6.3.1.2.1.9-.1 1.5Z"/></svg>
+</a>
+
+<!-- MODALE DE COMMANDE -->
+<div class="modal-overlay" id="order-modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>Finaliser ma commande</h3>
+      <button class="modal-close" id="order-modal-close" aria-label="Fermer">✕</button>
+    </div>
+
+    <div class="order-progress" id="order-progress">
+      <span></span><span></span>
+    </div>
+
+    <div class="selected-product">
+      <div>
+        <div id="selected-product-name" style="font-weight:700;"></div>
+        <div style="color:var(--color-muted); font-size:0.85rem;">Produit sélectionné</div>
+      </div>
+      <div class="price" id="selected-product-price"></div>
+    </div>
+
+    <!-- Étape 1 : infos joueur -->
+    <div id="step-info">
+      <form id="order-form">
+        <div class="field">
+          <label for="freeFireId">ID joueur Free Fire *</label>
+          <input type="text" inputmode="numeric" name="freeFireId" id="freeFireId" placeholder="Ex: 123456789" required>
+          <p class="hint">Ton ID est visible en haut de ton profil dans le jeu, sous ton pseudo (uniquement des chiffres).</p>
+          <p class="error-text"></p>
+        </div>
+        <div class="field">
+          <label for="customerName">Nom et prénom *</label>
+          <input type="text" name="customerName" id="customerName" required>
+          <p class="error-text"></p>
+        </div>
+        <div class="field">
+          <label for="customerPhone">Numéro de téléphone *</label>
+          <input type="tel" name="customerPhone" id="customerPhone" placeholder="Ex: 0197650741" required>
+          <p class="error-text"></p>
+        </div>
+        <div class="field">
+          <label for="customerEmail">Adresse e-mail *</label>
+          <input type="email" name="customerEmail" id="customerEmail" required>
+          <p class="error-text"></p>
+        </div>
+      </form>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-primary btn-block" id="order-next-btn">Continuer</button>
+      </div>
+    </div>
+
+    <!-- Étape 2 : récapitulatif + paiement -->
+    <div id="step-recap" style="display:none;">
+      <ul class="recap-list" id="recap-list"></ul>
+      <div class="recap-total">
+        <span>Total à payer</span>
+        <span id="recap-total-value"></span>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-outline" id="order-back-btn">Retour</button>
+        <button type="button" class="btn btn-primary" id="pay-now-btn">Payer maintenant</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+<script src="js/api.js"></script>
+<script src="js/main.js"></script>
+<script src="js/products.js"></script>
+<script src="js/order.js"></script>
+</body>
+</html>

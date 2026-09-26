@@ -1,0 +1,8 @@
+node_modules/
+.env
+backend/data/*.sqlite
+backend/data/*.sqlite-journal
+.DS_Store
+*.log
+backend/data/momo-tech.sqlite-shm
+backend/data/momo-tech.sqlite-wal

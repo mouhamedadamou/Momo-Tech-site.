@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Suivre ma commande — Momo Tech</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="index.html" class="logo"><span class="logo-mark">MT</span> Momo Tech</a>
+  </div>
+</header>
+
+<main class="container" style="max-width:480px; padding-top:40px; padding-bottom:80px;">
+  <h1 class="section-title">Suivre ma commande</h1>
+  <p class="section-subtitle">Entre ton numéro de commande et l'e-mail utilisé lors de l'achat.</p>
+
+  <form id="lookup-form">
+    <div class="field">
+      <label for="orderNumber">Numéro de commande</label>
+      <input type="text" id="orderNumber" name="orderNumber" placeholder="Ex: MT-20260925-4F7K2" required>
+    </div>
+    <div class="field">
+      <label for="email">E-mail</label>
+      <input type="email" id="email" name="email" required>
+    </div>
+    <button type="submit" class="btn btn-primary btn-block">Vérifier</button>
+  </form>
+
+  <div id="lookup-result" style="margin-top:24px;"></div>
+</main>
+
+<script src="js/api.js"></script>
+<script src="js/main.js"></script>
+<script>
+document.getElementById("lookup-form").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const resultEl = document.getElementById("lookup-result");
+  const orderNumber = document.getElementById("orderNumber").value.trim();
+  const email = document.getElementById("email").value.trim();
+
+  resultEl.innerHTML = "Recherche...";
+
+  try {
+    const { order } = await api.getOrderStatus(orderNumber, email);
+    resultEl.innerHTML = `
+      <ul class="recap-list">
+        <li><span>Produit</span><span>${order.productName}</span></li>
+        <li><span>ID Free Fire</span><span>${order.freeFireId}</span></li>
+        <li><span>Montant</span><span>${formatFcfa(order.price)}</span></li>
+        <li><span>Statut du paiement</span><span>${order.paymentStatus}</span></li>
+        <li><span>Statut de la commande</span><span>${order.orderStatus}</span></li>
+      </ul>
+      ${order.paymentUrl ? `<a href="${order.paymentUrl}" class="btn btn-primary btn-block">Finaliser le paiement</a>` : ""}
+    `;
+  } catch (err) {
+    resultEl.innerHTML = `<p style="color:var(--color-danger)">${err.message || "Commande introuvable."}</p>`;
+  }
+});
+</script>
+</body>
+</html>

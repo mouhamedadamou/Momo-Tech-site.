@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Confirmation de commande — Momo Tech</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="index.html" class="logo">
+      <span class="logo-mark">MT</span>
+      Momo Tech
+    </a>
+  </div>
+</header>
+
+<main class="container">
+  <div class="confirmation-card" id="confirmation-card">
+    <p>Vérification du paiement en cours...</p>
+  </div>
+</main>
+
+<script src="js/api.js"></script>
+<script src="js/main.js"></script>
+<script>
+const ICONS = {
+  completed: `<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>`,
+  pending: `<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>`,
+  failed: `<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18M6 6l12 12"/></svg>`,
+};
+
+const STATUS_META = {
+  COMPLETED: { icon: "completed", title: "Paiement réussi !", badge: "completed", label: "Payé" },
+  PENDING: { icon: "pending", title: "Paiement en cours de vérification", badge: "pending", label: "En attente" },
+  FAILED: { icon: "failed", title: "Le paiement a échoué", badge: "failed", label: "Échoué" },
+  CANCELLED: { icon: "failed", title: "Paiement annulé", badge: "cancelled", label: "Annulé" },
+};
+
+function getOrderNumberFromContext() {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get("order")) return params.get("order");
+  try {
+    const stored = JSON.parse(sessionStorage.getItem("momoTechLastOrder") || "null");
+    return stored?.orderNumber || null;
+  } catch {
+    return null;
+  }
+}
+
+async function render() {
+  const card = document.getElementById("confirmation-card");
+  const orderNumber = getOrderNumberFromContext();
+
+  if (!orderNumber) {
+    card.innerHTML = `<p>Impossible de retrouver ta commande. Contacte-nous sur WhatsApp avec ton numéro de commande si tu en as un.</p>
+      <a href="https://wa.me/22997650741" class="btn btn-primary" target="_blank" rel="noopener">Contacter sur WhatsApp</a>`;
+    return;
+  }
+
+  try {
+    // Revérifie toujours le statut réel auprès de PayDunya avant
+    // d'afficher quoi que ce soit — ne jamais se fier au simple fait que
+    // le client soit revenu sur cette page.
+    const { order } = await api.refreshPaymentStatus(orderNumber);
+    renderOrder(order);
+  } catch (err) {
+    card.innerHTML = `<p>Impossible de vérifier le paiement pour le moment. Réessaie dans un instant ou contacte-nous.</p>
+      <button class="btn btn-outline" onclick="render()">Réessayer</button>`;
+  }
+}
+
+function renderOrder(order) {
+  const card = document.getElementById("confirmation-card");
+  const meta = STATUS_META[order.paymentStatus] || STATUS_META.PENDING;
+
+  card.innerHTML = `
+    <div class="confirmation-icon ${meta.badge}">${ICONS[meta.icon]}</div>
+    <h1>${meta.title}</h1>
+    <p class="status-badge ${meta.badge}">${meta.label}</p>
+
+    <ul class="recap-list" style="text-align:left; margin-top:24px;">
+      <li><span>Numéro de commande</span><span>${order.orderNumber}</span></li>
+      <li><span>Produit</span><span>${order.productName}</span></li>
+      <li><span>ID Free Fire</span><span>${order.freeFireId}</span></li>
+      <li><span>Montant</span><span>${formatFcfa(order.price)}</span></li>
+      <li><span>Date</span><span>${new Date(order.createdAt).toLocaleString("fr-FR")}</span></li>
+    </ul>
+
+    ${order.paymentStatus === "COMPLETED" ? `
+      <p style="margin-top:20px;">Votre commande a bien été enregistrée. Merci pour votre confiance !</p>
+    ` : ""}
+    ${order.paymentStatus === "PENDING" ? `
+      <p style="margin-top:20px; color:var(--color-muted);">Si tu viens de payer, laisse quelques secondes à la confirmation d'arriver.</p>
+      <button class="btn btn-outline" onclick="render()" style="margin-top:10px;">Vérifier à nouveau</button>
+    ` : ""}
+
+    <a href="https://wa.me/22997650741" class="btn btn-primary btn-block" style="margin-top:20px;" target="_blank" rel="noopener">
+      Contacter Momo Tech sur WhatsApp
+    </a>
+    <a href="index.html" class="btn btn-outline btn-block" style="margin-top:10px;">Retour à l'accueil</a>
+  `;
+}
+
+render();
+</script>
+</body>
+</html>

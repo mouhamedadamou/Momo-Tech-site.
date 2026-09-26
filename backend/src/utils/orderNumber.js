@@ -1,0 +1,13 @@
+/**
+ * Génère un numéro de commande lisible et quasi-unique, ex: MT-20260925-4F7K2
+ * (le suffixe aléatoire évite les collisions sans dépendre d'un compteur
+ * partagé entre requêtes concurrentes).
+ */
+function generateOrderNumber() {
+  const now = new Date();
+  const datePart = now.toISOString().slice(0, 10).replace(/-/g, "");
+  const randomPart = Math.random().toString(36).slice(2, 7).toUpperCase();
+  return `MT-${datePart}-${randomPart}`;
+}
+
+module.exports = { generateOrderNumber };
