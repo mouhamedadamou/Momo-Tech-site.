@@ -2,7 +2,7 @@
  * Adapte cette URL vers ton backend (voir README section 2).
  * En développement local : http://localhost:4000
  */
-const API_BASE_URL = window.MOMO_TECH_API_BASE_URL || "http://localhost:4000";
+const API_BASE_URL = "https://momo-tech.onrender.com";
 
 async function apiRequest(path, { method = "GET", body, token } = {}) {
   const headers = { "Content-Type": "application/json" };
