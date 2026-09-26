@@ -541,7 +541,9 @@ button { font-family: inherit; cursor: pointer; }
 /* ===== Fond du menu mobile ===== */
 @media (max-width: 899px) {
   .main-nav {
-    background: linear-gradient(
+  position: relative;
+z-index: 9999;  
+background: linear-gradient(
       180deg,
       #0b3d91 0%,
       #071a3d 45%,
