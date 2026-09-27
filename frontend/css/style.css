@@ -405,8 +405,8 @@ button { font-family: inherit; cursor: pointer; }
 /* ---------- Modal (order flow) ---------- */
 .modal-overlay {
   position: fixed; inset: 0;
-  background: rgba(5, 5, 8, 0.75);
-  backdrop-filter: blur(4px);
+  background: transparent;
+  backdrop-filter: none;
   display: flex; align-items: flex-end; justify-content: center;
   z-index: 100;
   opacity: 0; pointer-events: none;
