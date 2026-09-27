@@ -68,8 +68,7 @@ const PAYMENT_STATUS_LABELS = {
   FAILED: "Échoué",
   CANCELLED: "Annulé",
 };
-const ORDER_STATUSES = ["En attente", "Payée", "En traitement", "Terminée", "Annulée", "Échec"];
-
+const ORDER_STATUSES = ["En attente", "En traitement", "Terminée", "Annulée"];
 async function loadOrders(page = 1) {
   const query = document.getElementById("admin-search").value.trim();
   const status = document.getElementById("admin-status-filter").value;
