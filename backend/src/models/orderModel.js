@@ -58,32 +58,22 @@ function attachPaydunyaInvoice(orderId, { token, invoiceUrl }) {
  * réelle auprès de PayDunya.
  */
 function updatePaymentStatus(orderId, paymentStatus, paymentMethod) {
-  const orderStatusMap = {
-    COMPLETED: "Payée",
-    FAILED: "Échec",
-    CANCELLED: "Annulée",
-    PENDING: "En attente",
-  };
-
   db.prepare(`
     UPDATE orders
     SET payment_status = ?,
-        order_status = ?,
         payment_method = COALESCE(?, payment_method),
         updated_at = datetime('now')
     WHERE id = ?
-  `).run(paymentStatus, orderStatusMap[paymentStatus] || "En attente", paymentMethod || null, orderId);
+  `).run(paymentStatus, paymentMethod || null, orderId);
 
   return getOrderById(orderId);
 }
-
 /**
  * Changement du statut de TRAITEMENT (workflow interne admin), distinct
  * du statut de paiement. Volontairement une fonction séparée pour qu'il
  * soit impossible d'appeler ce chemin de code pour falsifier un paiement.
  */
-const ALLOWED_ORDER_STATUSES = ["En attente", "Payée", "En traitement", "Terminée", "Annulée", "Échec"];
-
+const ALLOWED_ORDER_STATUSES = ["En attente", "En traitement", "Terminée", "Annulée"];
 function updateOrderStatus(orderId, orderStatus) {
   if (!ALLOWED_ORDER_STATUSES.includes(orderStatus)) {
     throw new Error("Statut de commande invalide");
