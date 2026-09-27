@@ -124,8 +124,7 @@ button { font-family: inherit; cursor: pointer; }
   position: sticky;
   top: 0;
   z-index: 50;
-  backdrop-filter: none;
-   -webkit-backdrop-filter: none;
+  backdrop-filter: blur(10px);
   background: rgba(11, 11, 16, 0.85);
   border-bottom: 1px solid var(--color-border);
 }
@@ -166,7 +165,7 @@ button { font-family: inherit; cursor: pointer; }
 .header-actions .btn { display: none; }
 
 .menu-toggle {
-  background: #16161e;
+  background: none;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
   width: 44px; height: 44px;
@@ -186,7 +185,7 @@ button { font-family: inherit; cursor: pointer; }
 
 .mobile-nav {
   position: fixed; inset: 68px 0 0 0;
-  background: #0b0b10;
+  background: var(--color-bg);
   z-index: 49;
   padding: 24px 18px;
   transform: translateY(-12px);
@@ -222,7 +221,7 @@ button { font-family: inherit; cursor: pointer; }
   position: absolute; inset: -20% -10% auto -10%;
   height: 480px;
   background: radial-gradient(ellipse at center, rgba(59, 130, 246, 0.28), transparent 65%);
-  filter: blur(0);
+  filter: blur(10px);
   pointer-events: none;
 }
 .hero-inner { position: relative; text-align: center; }
@@ -406,8 +405,8 @@ button { font-family: inherit; cursor: pointer; }
 /* ---------- Modal (order flow) ---------- */
 .modal-overlay {
   position: fixed; inset: 0;
-  background: transparent;
-  backdrop-filter: none;
+  background: rgba(5, 5, 8, 0.75);
+  backdrop-filter: blur(4px);
   display: flex; align-items: flex-end; justify-content: center;
   z-index: 100;
   opacity: 0; pointer-events: none;
@@ -538,20 +537,3 @@ button { font-family: inherit; cursor: pointer; }
 .status-badge.completed { background: rgba(34,197,94,0.15); color: var(--color-success); }
 .status-badge.pending { background: rgba(245,158,11,0.15); color: var(--color-warning); }
 .status-badge.failed, .status-badge.cancelled { background: rgba(239,68,68,0.15); color: var(--color-danger); }
-
-/* ===== Fond du menu mobile ===== */
-@media (max-width: 899px) {
-  .mobile-nav {
-  position: relative;
-z-index: 9999;  
-background: linear-gradient(
-      180deg,
-      #0b3d91 0%,
-      #071a3d 45%,
-      #05070d 100%
-    ) !important;
-
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-  }
-}
