@@ -221,7 +221,7 @@ button { font-family: inherit; cursor: pointer; }
   position: absolute; inset: -20% -10% auto -10%;
   height: 480px;
   background: radial-gradient(ellipse at center, rgba(59, 130, 246, 0.28), transparent 65%);
-  filter: blur(10px);
+  filter: blur(0);
   pointer-events: none;
 }
 .hero-inner { position: relative; text-align: center; }
