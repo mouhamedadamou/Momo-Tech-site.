@@ -145,8 +145,17 @@ function getDashboardStats() {
   };
 }
 
+function deleteOrder(orderId) {
+  const result = db.prepare(`
+    DELETE FROM orders
+    WHERE id = ?
+  `).run(orderId);
+
+  return result.changes > 0;
+}
 module.exports = {
   createOrder,
+deleteOrder,
   getOrderById,
   getOrderByNumber,
   getOrderByPaydunyaToken,
