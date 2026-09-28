@@ -60,4 +60,10 @@ const api = {
       token,
       body: { orderStatus },
     }),
-};
+
+adminDeleteOrder: (token, orderNumber) =>
+  apiRequest(`/api/admin/orders/${encodeURIComponent(orderNumber)}`, {
+    method: "DELETE",
+    token,
+   }),
+  };
