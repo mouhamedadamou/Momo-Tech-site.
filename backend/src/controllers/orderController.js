@@ -1,7 +1,7 @@
 const { getProductById } = require("../data/products");
 const orderModel = require("../models/orderModel");
 const { validateOrderInput } = require("../middleware/validate");
-
+const { sendOrderNotification } = require("../services/emailService");
 /**
  * POST /api/orders
  * Crée une commande. Le prix n'est JAMAIS pris dans req.body : on relit
@@ -25,7 +25,9 @@ function createOrder(req, res) {
     customerPhone: String(req.body.customerPhone).trim(),
     customerEmail: String(req.body.customerEmail).trim().toLowerCase(),
   });
-
+sendOrderNotification(order).catch((err) => {
+  console.error("Erreur notification e-mail:", err);
+});
   res.status(201).json({ order: toPublicOrder(order) });
 }
 
