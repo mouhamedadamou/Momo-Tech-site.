@@ -109,6 +109,11 @@ function renderOrderRow(order) {
           ${statusOptions}
         </select>
       </td>
+      <td>
+    <button type="button" class="delete-order-btn" data-order-number="${order.orderNumber}">
+        Supprimer
+    </button>
+</td>
     </tr>
   `;
 }
