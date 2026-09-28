@@ -84,6 +84,7 @@ async function loadOrders(page = 1) {
     }
     tbody.innerHTML = result.orders.map(renderOrderRow).join("");
     attachStatusHandlers();
+    attachDeleteHandlers();
   } catch (err) {
     if (err.status === 401) return handleUnauthorized();
     tbody.innerHTML = `<tr><td colspan="8">Erreur de chargement.</td></tr>`;
@@ -131,6 +132,25 @@ function attachStatusHandlers() {
   });
 }
 
+function attachDeleteHandlers() {
+  document.querySelectorAll(".delete-order-btn").forEach((button) => {
+    button.addEventListener("click", async () => {
+      const orderNumber = button.dataset.orderNumber;
+
+      if (!confirm(`Supprimer la commande ${orderNumber} ?`)) {
+        return;
+      }
+
+      try {
+        await api.adminDeleteOrder(getToken(), orderNumber);
+        showToast("Commande supprimée.", "success");
+        loadOrders(1);
+      } catch (err) {
+        showToast(err.message || "Échec de la suppression.", "error");
+      }
+    });
+  });
+}
 function handleUnauthorized() {
   clearToken();
   showLoggedOutUI();
