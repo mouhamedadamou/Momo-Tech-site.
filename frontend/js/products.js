@@ -10,14 +10,42 @@ let activeCategory = "all";
 async function loadCatalog() {
   const grid = document.getElementById("product-grid");
   const tabs = document.getElementById("category-tabs");
+  const CACHE_KEY = "momo_catalog_cache";
+
   if (!grid) return;
 
+  // Afficher immédiatement les produits sauvegardés
+  const cached = localStorage.getItem(CACHE_KEY);
+
+  if (cached) {
+    try {
+      const savedCatalog = JSON.parse(cached);
+
+      if (savedCatalog && Array.isArray(savedCatalog.products)) {
+        CATALOG = savedCatalog;
+        renderTabs(tabs);
+        renderGrid(grid);
+      }
+    } catch (err) {
+      localStorage.removeItem(CACHE_KEY);
+    }
+  }
+
+  // Récupérer ensuite les produits à jour depuis le serveur
   try {
     CATALOG = await api.getProducts();
+
+    // Sauvegarder les produits pour la prochaine visite
+    localStorage.setItem(CACHE_KEY, JSON.stringify(CATALOG));
+
     renderTabs(tabs);
     renderGrid(grid);
   } catch (err) {
-    grid.innerHTML = `<p style="color:var(--color-muted)">Impossible de charger les produits pour le moment. Réessaie dans un instant.</p>`;
+    // Si une ancienne copie existe, on la garde affichée
+    if (!CATALOG.products || CATALOG.products.length === 0) {
+      grid.innerHTML =
+        '<p style="color:var(--color-muted)">Impossible de charger les produits pour le moment. Réessaie dans un instant.</p>';
+    }
   }
 }
 
