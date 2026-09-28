@@ -62,5 +62,19 @@ function toAdminOrder(order) {
     updatedAt: order.updated_at,
   };
 }
+function deleteOrder(req, res) {
+  const order = orderModel.getOrderByNumber(req.params.orderNumber);
 
-module.exports = { listOrders, getStats, updateOrderStatus };
+  if (!order) {
+    return res.status(404).json({ error: "Commande introuvable." });
+  }
+
+  const deleted = orderModel.deleteOrder(order.id);
+
+  if (!deleted) {
+    return res.status(404).json({ error: "Commande introuvable." });
+  }
+
+  res.json({ success: true, message: "Commande supprimée." });
+}
+module.exports = { listOrders, getStats, updateOrderStatus, deleteOrder };
